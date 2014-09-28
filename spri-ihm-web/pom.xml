@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+	<groupId>fr.smabtp.spri</groupId>
+	<artifactId>spri-ihm</artifactId>
+	<version>1.0</version>
+	</parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>spri-ihm-web</artifactId>
+    <packaging>war</packaging>
+
+
+    <dependencies>
+    
+     <dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>servlet-api</artifactId>
+		<version>2.5</version>
+	</dependency>
+	
+	<!-- Logging -->
+
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+          <version>${slf4j.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+          <version>${slf4j.version}</version>
+      </dependency>
+      
+      <!-- SPRING  -->
+
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-web</artifactId>
+          <version>${spring-framework.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-test</artifactId>
+          <version>${spring-framework.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-jdbc</artifactId>
+          <version>${spring-framework.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-aop</artifactId>
+          <version>${spring-framework.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-webmvc</artifactId>
+          <version>${spring-framework.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-tx</artifactId>
+          <version>${spring-framework.version}</version>
+      </dependency>
+      <!-- used for EhCacheCacheManager -->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-context-support</artifactId>
+          <version>${spring-framework.version}</version>
+          <exclusions>
+              <exclusion>
+                  <groupId>quartz</groupId>
+                  <artifactId>quartz</artifactId>
+              </exclusion>
+          </exclusions>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-orm</artifactId>
+          <version>${spring-framework.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-oxm</artifactId>
+          <version>${spring-framework.version}</version>
+          <exclusions>
+              <exclusion>
+                  <groupId>commons-lang</groupId>
+                  <artifactId>commons-lang</artifactId>
+              </exclusion>
+          </exclusions>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-jms</artifactId>
+          <version>${spring-framework.version}</version>
+      </dependency>
+      
+      	
+	<dependency>
+                <groupId>fr.smabtp.spri</groupId>
+                <artifactId>spri-ihm-service</artifactId>
+                <version>${project.version}</version>
+                <type>jar</type>
+                <scope>compile</scope>
+       	</dependency>
+     
+    </dependencies>
+
+    <build>
+        <finalName>spri-ihm-web</finalName>
+        <plugins>
+        
+        	<plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${version.compiler.plugin}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+        
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+               
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${version.war.plugin}</version>
+                <configuration>
+                    <archiveClasses>true</archiveClasses>
+                </configuration>
+            </plugin>
+            
+            <!-- Plugin failsafe -->
+       		<plugin>
+    		<groupId>org.apache.maven.plugins</groupId>
+    		<artifactId>maven-failsafe-plugin</artifactId>
+    		<version>2.16</version>
+    		<configuration>
+ 		</configuration>
+    		<dependencies>
+      			<dependency>
+        			<groupId>org.apache.maven.surefire</groupId>
+        			<artifactId>surefire-junit47</artifactId>
+        			<version>2.16</version>
+      			</dependency>
+    		</dependencies>
+    		<executions>
+      			<execution>
+         			<id>integration-test</id>
+         			<goals>
+            			<goal>integration-test</goal>
+         			</goals>
+         		</execution>
+      			<execution>
+         			<id>verify</id>
+         				<goals>
+            				<goal>verify</goal>
+         				</goals>
+      			</execution>
+   			</executions>
+  		</plugin>
+  			
+        </plugins>
+    </build>
+</project>
